@@ -9,7 +9,7 @@ class ChatMockService implements ChatService {
   static final List<ChatMessage> _msgs = [
     ChatMessage(
       id: '1',
-      text: 'Bom dia',
+      text: 'Oi, Bom dia',
       createAt: DateTime.now(),
       userId: '123',
       userName: 'Teste 1',
@@ -17,7 +17,7 @@ class ChatMockService implements ChatService {
     ),
     ChatMessage(
       id: '2',
-      text: 'Oi, bom dia',
+      text: 'Bom dia',
       createAt: DateTime.now(),
       userId: '456',
       userName: 'Teste 2',
