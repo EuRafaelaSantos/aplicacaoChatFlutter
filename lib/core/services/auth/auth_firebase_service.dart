@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+//import 'dart:io';
 import 'package:chat/core/models/chat_user.dart';
 import 'package:chat/core/services/auth/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,7 +27,7 @@ class AuthFirebasService implements AuthService {
     String name,
     String email,
     String password,
-    File? image,
+    //File? image,
   ) async {
     final auth = FirebaseAuth.instance;
     UserCredential credential = await auth.createUserWithEmailAndPassword(
@@ -55,7 +55,7 @@ class AuthFirebasService implements AuthService {
       id: user.uid,
       name: user.displayName ?? user.email!.split('@')[0],
       email: user.email!,
-      imageURL: user.photoURL ?? 'assets/images/avatar.png',
+      // imageURL: user.photoURL ?? 'assets/images/avatar.png',
     );
   }
 }

@@ -1,6 +1,6 @@
-import 'dart:io';
+//import 'dart:io';
 
-import 'package:chat/components/user_image_picker.dart';
+//import 'package:chat/components/user_image_picker.dart';
 import 'package:chat/core/models/auth_form_data.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +17,9 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   final _formData = AuthFormData();
 
-  void _handleImagePick(File image) {
+  /* void _handleImagePick(File image) {
     _formData.image = image;
-  }
+  }*/
 
   void _showError(String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -31,9 +31,9 @@ class _AuthFormState extends State<AuthForm> {
   void _submit() {
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) return;
-    if (_formData.image == null && _formData.isSigup) {
+    /*if (_formData.image == null && _formData.isSigup) {
       return _showError('Imagem não selecionada!');
-    }
+    }*/
 
     widget.onSubimit(_formData);
   }
@@ -49,23 +49,23 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               children: [
                 if (_formData.isSigup)
-                  UserImagePicker(
+                  /*  UserImagePicker(
                     onImagePick: _handleImagePick,
-                  ),
-                if (_formData.isSigup)
-                  TextFormField(
-                    key: const ValueKey('name'),
-                    initialValue: _formData.name,
-                    onChanged: (name) => _formData.name = name,
-                    decoration: const InputDecoration(labelText: 'Usuário'),
-                    validator: (_name) {
-                      final name = _name ?? '';
-                      if (name.trim().length < 3) {
-                        return 'Necessário NOME com no mínimo 3 caracteres';
-                      }
-                      return null;
-                    },
-                  ),
+                  ),*/
+                  if (_formData.isSigup)
+                    TextFormField(
+                      key: const ValueKey('name'),
+                      initialValue: _formData.name,
+                      onChanged: (name) => _formData.name = name,
+                      decoration: const InputDecoration(labelText: 'Usuário'),
+                      validator: (_name) {
+                        final name = _name ?? '';
+                        if (name.trim().length < 3) {
+                          return 'Necessário NOME com no mínimo 3 caracteres';
+                        }
+                        return null;
+                      },
+                    ),
                 TextFormField(
                   key: const ValueKey('email'),
                   initialValue: _formData.email,

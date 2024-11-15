@@ -1,4 +1,4 @@
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:chat/core/models/chat_message.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ class MessageBubble extends StatelessWidget {
   const MessageBubble(
       {super.key, required this.message, required this.belongsToMe});
 
-  Widget _showUserImage(String imageURL) {
+  /* Widget _showUserImage(String imageURL) {
     ImageProvider? provider;
     final uri = Uri.parse(imageURL);
 
@@ -22,7 +22,7 @@ class MessageBubble extends StatelessWidget {
     return CircleAvatar(
       backgroundImage: provider,
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +71,12 @@ class MessageBubble extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(
+        /* Positioned(
           top: 0,
           left: belongsToMe ? null : 165,
           right: belongsToMe ? 165 : null,
           child: _showUserImage(message.userImageURL),
-        )
+        )*/
       ],
     );
   }

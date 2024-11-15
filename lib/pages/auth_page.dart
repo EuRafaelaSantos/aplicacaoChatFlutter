@@ -28,7 +28,7 @@ class _AuthPageState extends State<AuthPage> {
           formData.name,
           formData.email,
           formData.password,
-          formData.image,
+          //formData.image,
         );
       }
     } catch (error) {

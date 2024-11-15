@@ -1,3 +1,5 @@
+/*
+  NÃO USAREI IMAGEM NO APP!!
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -59,3 +61,5 @@ class _UserImagePickerState extends State<UserImagePicker> {
     );
   }
 }
+
+*/

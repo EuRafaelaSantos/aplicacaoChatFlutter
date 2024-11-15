@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+//import 'dart:io';
 import 'dart:math';
 import 'package:chat/core/models/chat_user.dart';
 import 'package:chat/core/services/auth/auth_service.dart';
@@ -9,7 +9,7 @@ class AuthMockService implements AuthService {
     id: '123',
     name: 'Teste 1',
     email: 'teste1@gmail.com',
-    imageURL: 'assets/images/avatar.png',
+    // imageURL: 'assets/images/avatar.png',
   );
   static Map<String, ChatUser> _users = {_defaultUser.email: _defaultUser};
   static ChatUser? _currentUser;
@@ -31,13 +31,13 @@ class AuthMockService implements AuthService {
     String name,
     String email,
     String password,
-    File? image,
+    //File? image,
   ) async {
     final newUser = ChatUser(
       id: Random().nextDouble().toString(),
       name: name,
       email: email,
-      imageURL: image?.path ?? 'assets/images/avatar.png',
+      // imageURL: image?.path ?? 'assets/images/avatar.png',
     );
 
     _users.putIfAbsent(email, () => newUser);
