@@ -9,7 +9,7 @@ abstract class AuthService {
   Stream<ChatUser?> get userChanges;
 
   Future<void> signup(
-    String nome,
+    String name,
     String email,
     String password,
     // File? image,
@@ -22,6 +22,6 @@ abstract class AuthService {
 
   factory AuthService() {
     // return AuthMockService();
-    return AuthFirebasService();
+    return AuthFirebaseService();
   }
 }

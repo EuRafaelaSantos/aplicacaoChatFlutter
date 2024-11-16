@@ -48,31 +48,31 @@ class _AuthFormState extends State<AuthForm> {
             key: _formKey,
             child: Column(
               children: [
-                if (_formData.isSigup)
-                  /*  UserImagePicker(
+                //if (_formData.isSigup)
+                /*  UserImagePicker(
                     onImagePick: _handleImagePick,
                   ),*/
-                  if (_formData.isSigup)
-                    TextFormField(
-                      key: const ValueKey('name'),
-                      initialValue: _formData.name,
-                      onChanged: (name) => _formData.name = name,
-                      decoration: const InputDecoration(labelText: 'Usuário'),
-                      validator: (_name) {
-                        final name = _name ?? '';
-                        if (name.trim().length < 3) {
-                          return 'Necessário NOME com no mínimo 3 caracteres';
-                        }
-                        return null;
-                      },
-                    ),
+                if (_formData.isSigup)
+                  TextFormField(
+                    key: const ValueKey('name'),
+                    initialValue: _formData.name,
+                    onChanged: (name) => _formData.name = name,
+                    decoration: const InputDecoration(labelText: 'Usuário'),
+                    validator: (localName) {
+                      final name = localName ?? '';
+                      if (name.trim().length < 3) {
+                        return 'Necessário NOME com no mínimo 3 caracteres';
+                      }
+                      return null;
+                    },
+                  ),
                 TextFormField(
                   key: const ValueKey('email'),
                   initialValue: _formData.email,
                   onChanged: (email) => _formData.email = email,
                   decoration: const InputDecoration(labelText: 'Email'),
-                  validator: (_email) {
-                    final email = _email ?? '';
+                  validator: (localEmail) {
+                    final email = localEmail ?? '';
                     if (!email.contains('@')) {
                       return 'EMAIL inválido!';
                     }
@@ -85,8 +85,8 @@ class _AuthFormState extends State<AuthForm> {
                   onChanged: (password) => _formData.password = password,
                   obscureText: true,
                   decoration: const InputDecoration(labelText: 'Senha'),
-                  validator: (_password) {
-                    final password = _password ?? '';
+                  validator: (localPassword) {
+                    final password = localPassword ?? '';
                     if (password.length < 6) {
                       return 'Necessário SENHA com no mínimo 6 caracteres';
                     }
