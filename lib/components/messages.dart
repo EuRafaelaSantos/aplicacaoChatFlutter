@@ -12,24 +12,21 @@ class Messages extends StatelessWidget {
     final currentUser = AuthService().currentUser;
     return StreamBuilder<List<ChatMessage>>(
       stream: ChatService().messagesStream(),
-      builder: (cxt, snapshot) {
+      builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: RefreshProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(
-            child: Text('Sem mensagens ainda!'),
-          );
+          return const Center(child: Text('Sem dados. Vamos conversar?'));
         } else {
-          final msg = snapshot.data!;
+          final msgs = snapshot.data!;
           return ListView.builder(
             reverse: true,
-            itemCount: msg.length,
-            itemBuilder: (cxt, i) => MessageBubble(
-                key: ValueKey(msg[i].id),
-                message: msg[i],
-                belongsToMe: currentUser?.id == msg[i].userId),
+            itemCount: msgs.length,
+            itemBuilder: (ctx, i) => MessageBubble(
+              key: ValueKey(msgs[i].id),
+              message: msgs[i],
+              belongsToMe: currentUser?.id == msgs[i].userId,
+            ),
           );
         }
       },

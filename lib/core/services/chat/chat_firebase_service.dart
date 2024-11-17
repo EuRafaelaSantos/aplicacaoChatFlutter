@@ -9,27 +9,28 @@ class ChatFirebaseService implements ChatService {
   Stream<List<ChatMessage>> messagesStream() {
     final store = FirebaseFirestore.instance;
     final snapshots = store
-        .collection('chat')
+        .collection('msg')
         .withConverter(
           fromFirestore: _fromFirestore,
           toFirestore: _toFirestore,
         )
+        .orderBy('createAt', descending: true)
         .snapshots();
-    // Posibilidade 01
+
     return snapshots.map((snapshot) {
       return snapshot.docs.map((doc) {
         return doc.data();
       }).toList();
     });
-    /* Possibilidade 02
-    return Stream<List<ChatMessage>>.multi((controller) {
-      snapshots.listen((snapshot) {
-        List<ChatMessage> lista = snapshot.docs.map((doc) {
-          return doc.data();
-        }).toList();
-        controller.add(lista);
-      });
-    });*/
+
+    // return Stream<List<ChatMessage>>.multi((controller) {
+    //   snapshots.listen((snapshot) {
+    //     List<ChatMessage> lista = snapshot.docs.map((doc) {
+    //       return doc.data();
+    //     }).toList();
+    //     controller.add(lista);
+    //   });
+    // });
   }
 
   @override
@@ -45,7 +46,7 @@ class ChatFirebaseService implements ChatService {
     );
 
     final docRef = await store
-        .collection('chat')
+        .collection('msg')
         .withConverter(
           fromFirestore: _fromFirestore,
           toFirestore: _toFirestore,
@@ -63,7 +64,7 @@ class ChatFirebaseService implements ChatService {
   ) {
     return {
       'text': msg.text,
-      'createdAt': msg.createAt.toIso8601String(),
+      'createAt': msg.createAt.toIso8601String(),
       'userId': msg.userId,
       'userName': msg.userName,
     };
@@ -77,7 +78,7 @@ class ChatFirebaseService implements ChatService {
     return ChatMessage(
       id: doc.id,
       text: doc['text'],
-      createAt: DateTime.parse(doc['createdAt']),
+      createAt: DateTime.parse(doc['createAt']),
       userId: doc['userId'],
       userName: doc['userName'],
     );
